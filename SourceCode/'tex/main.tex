@@ -1,0 +1,219 @@
+\author{João Gonçalves}
+\newcommand{\authorr}{Teresa Nogueira}
+\newcommand{\authorrr}{André Teodósio}
+\newcommand{\authorrrr}{Francisco Carvalho}
+\newcommand{\studentID}{99995}
+\newcommand{\studentIDD}{100029}
+\newcommand{\studentIDDD}{99889}
+\newcommand{\studentIDDDD}{99941}
+%\newcommand{\supervisorone}{Prof\textsuperscript{\underline{a}}. XXXXXX}
+\newcommand{\supervisorone}{João Silvestre}
+\newcommand{\supervisortwo}{}
+\newcommand{\department}{Engenharia Eletrotécnica e de Computadores}
+\newcommand{\exam}{Modelação e Simulação}
+
+\title{%
+Trabalho 1\\
+\large Modelação de um sistema de terapia de cancro}
+\date{Dezembro 2022}
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=30mm,top=25mm,right=30mm,bottom=25mm]{geometry}
+\usepackage[bottom]{footmisc}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usepackage{booktabs}
+\usepackage[usestackEOL]{stackengine}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption}
+%\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[linktoc=all]{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{enumitem,kantlipsum}
+\usepackage[square,numbers,sort]{natbib}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{listings}
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{minted}
+\usepackage{amssymb}
+\usepackage{babel}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{graphicx,array}
+\usepackage{breakurl}
+\usepackage{placeins}
+\usepackage{colortbl}
+\usepackage{attrib}
+\usepackage{wrapfig}
+\usepackage{mathabx}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+%\tcbuselibrary{skins,breakable}
+%\usetikzlibrary{shadings,shadows}
+\usemintedstyle{emacs}
+\linespread{1}
+%\setlength{\parindent}{0pt}
+
+\newenvironment{block}[1]{%
+    \tcolorbox[beamer,%
+    noparskip,breakable,
+    colback=LightBlue,colframe=DarkBlue,%
+    colbacklower=DarkBlue!75!LightBlue,%
+    title=#1]}%
+    {\endtcolorbox}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\lstset{
+  style              = Matlab-editor,
+  basicstyle         = \scriptsize\mlttfamily,
+  escapechar         = ",
+  mlshowsectionrules = true,
+  extendedchars=true,
+  literate= {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {ã}{{\~a}}1 {õ}{{\~o}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ã}{{\~A}}1,
+}
+
+\def\delequal{\mathrel{\ensurestackMath{\stackon[1pt]{=}{\scriptstyle\Delta}}}}
+%------------------------------------ MAGIC--------------------------------------
+\def\UrlBreaks{\do\/\do-}
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\a%
+\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\&}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%----------------------------------TITLE PAGE -----------------------------------
+\makeatletter
+\def\maketitle{
+  \begin{center}\leavevmode
+        \normalfont
+        \includegraphics[width=0.5\columnwidth]{img/title-page/IST.pdf}
+        \vskip 0.05cm   
+        \textsc{\large \department}\\
+        \vskip 0.5cm
+        \rule{0.95\linewidth}{0.2 mm} %\\
+        {\large \exam}\\[0.5 cm]
+        {\huge \bfseries \@title \par} 
+        \includegraphics[scale=0.65]{img/title-page/-000.jpg}
+        \vspace{-2em}
+        \captionof*{figure}{\color{gray} Imagem: freepik.com}
+        %\vspace{0.5cm}
+        \rule{0.95\linewidth}{0.2 mm} \\[0.75 cm]
+        %\fontsize{9pt}{11pt}\selectfont
+        \begin{minipage}[t]{0.45\textwidth}
+	    \begin{flushleft} \large
+                \emph{Autores:}\\
+		    \normalsize \textbf{\authorrr} : \studentIDDD\\
+                \scriptsize $\hookrightarrow$ andre.teodosio@tecnico.ulisboa.pt \\
+                \normalsize \textbf{\authorrrr} : \studentIDDDD \\
+                \scriptsize $\hookrightarrow$ franciscosoaresc@tecnico.ulisboa.pt
+            \end{flushleft}
+	\end{minipage}
+        \begin{minipage}[t]{0.45\textwidth}
+	   \begin{flushleft} \large
+                \vphantom{teste 123} \\
+			\normalsize \textbf{\@author} : \studentID\\
+                \fontsize{9pt}{11pt}\selectfont $\hookrightarrow$ jrazevedogoncalves@tecnico.ulisboa.pt \\
+                \normalsize \textbf{\authorr} : \studentIDD\\
+                \scriptsize $\hookrightarrow$ maria.teresa.ramos.nogueira@tecnico.ulisboa.pt
+		\end{flushleft}
+	\end{minipage}
+        \vskip 1em
+        \begin{minipage}[t]{0.45\textwidth}
+	   \begin{flushleft} \large
+			\ifdefempty{\supervisortwo}{\emph{Docente:\\}}{\emph{Supervisores:\\}}
+			\supervisorone\\
+			\ifdefempty{\supervisortwo}{}{\supervisortwo\\}
+		\end{flushleft}
+	\end{minipage}
+         \begin{minipage}[t]{0.45\textwidth}
+	   \begin{flushright} \large
+			\phantom{123 experiência}
+		\end{flushright}
+	\end{minipage}
+        \vspace{0.35cm}
+        \begin{quotation}
+            \textit{O grupo de alunos acima identificado garante que o texto deste relatório e todo o software e resultados entregues foram inteiramente realizados pelos elementos do grupo, com uma participação significativa de todos eles, e que nenhuma parte do trabalho ou do software e resultados apresentados foi obtida a partir de outras pessoas ou fontes.}
+        \end{quotation}
+	\vfill
+	{\Large \@date\par}
+   \end{center}
+   %\vfill
+   %\null
+   \cleardoublepage
+  }
+\makeatother
+%-------------------------------- ENDTITLE PAGE ----------------------------------
+%---> Header <---
+%\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}% Header rule width
+\renewcommand{\footrulewidth}{0pt}% No footer rule
+\setlength\headheight{26pt} 
+\fancyhead[L]{\raisebox{0.1\height}[0pt][0pt]{\textit{Modelação e Simulação}}}
+\fancyhead[R]{\raisebox{0.1\height}[0pt][0pt]{2022/2023}}
+
+\pgfplotsset{compat=1.18}
+\setcounter{tocdepth}{4}
+%\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{-2}
+\setlength{\bibsep}{0.1em}%reduzir espaço entre refs.
+
+\newtheorem{theorem}{Theorem}[section]
+\graphicspath{{figures/}}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tab.}
+\renewcommand{\contentsname}{Índice}
+\settocbibname{Referências}
+
+\begin{document}
+    \sloppy
+    %% title page
+    \pagenumbering{gobble}
+    \pagestyle{empty}
+    \maketitle
+
+    \newgeometry{left=25mm,top=23.5mm,right=25mm,bottom=23.5mm}
+    %% toc
+    %\tableofcontents
+    %% body
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    %\section{Perguntas}
+    \phantomsection\addcontentsline{toc}{section}{Perguntas}\vskip -0em%
+        \input{src/perguntas/P1}
+        \input{src/perguntas/P2}
+        \input{src/perguntas/P3}
+        \input{src/perguntas/P4}
+        \input{src/perguntas/P5}
+        \input{src/perguntas/P6}
+
+    %% refs
+    %\clearpage
+    \bibliographystyle{unsrtnat}
+    \nocite{*}
+    {\footnotesize%
+    \bibliography{refs}}
+    %% attachments
+    %\newpage
+    %\input{appendix.tex}
+
+\end{document}
